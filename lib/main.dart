@@ -1,21 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:name_generator/themes/theme_dark.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  DarkThemeProvider themeChangeProvider = DarkThemeProvider();
+
+  @override
+  void initState(){
+    super.initState();
+    getCurrentAppTheme();
+  }
+
+  void getCurrentAppTheme() async {
+    themeChangeProvider.darkTheme = await themeChangeProvider.darkThemePreference.getTheme();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Startup Name Generator',
+        title: 'Name Generator',
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black
+            backgroundColor: Color.fromARGB(255, 67, 145, 73),
+            foregroundColor: Color.fromARGB(255, 255, 255, 255)
           )
         ),
         debugShowCheckedModeBanner: false,
@@ -65,7 +83,7 @@ class _RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Startup Name Generator'),
+        title: const Text('Name Generator'),
         actions: [
           IconButton(
             onPressed: _pushSaved,
