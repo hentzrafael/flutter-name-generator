@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context){
     return ThemeData(
-      primarySwatch: Colors.red,
+      primarySwatch: Colors.green,
       primaryColor: isDarkTheme ? Colors.black : Colors.white,
 
       backgroundColor: isDarkTheme ? Colors.black : const Color(0xffF1F5FB),
@@ -23,7 +23,9 @@ class Styles {
       buttonTheme: Theme.of(context).buttonTheme.copyWith(
         colorScheme: isDarkTheme ? const ColorScheme.dark() : const ColorScheme.light()
       ),
-      appBarTheme: const AppBarTheme(
+      dividerColor: isDarkTheme ?  Colors.white : Colors.black,
+      appBarTheme: AppBarTheme(
+        color: isDarkTheme ? Colors.grey : Colors.green,
         elevation: 0.0
       )
     );
