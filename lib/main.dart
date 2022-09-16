@@ -3,6 +3,7 @@ import 'package:english_words/english_words.dart';
 import 'package:name_generator/themes/dark_theme_style.dart';
 import 'package:name_generator/themes/theme_dark.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,6 +38,17 @@ class _MyAppState extends State<MyApp> {
       },
       child: Consumer<DarkThemeProvider>(builder: (context, value, child) {
         return MaterialApp(
+            builder: (context, child) => ResponsiveWrapper.builder(child,
+                maxWidth: 1600,
+                minWidth: 200,
+                defaultScale: true,
+                breakpoints: [
+                  ResponsiveBreakpoint.resize(480, name: MOBILE),
+                  ResponsiveBreakpoint.autoScale(800, name: TABLET),
+                  ResponsiveBreakpoint.autoScale(1000, name: DESKTOP),
+                ],
+                background:
+                    Container(color: Color.fromARGB(255, 213, 106, 106))),
             title: 'Name Generator',
             theme: Styles.themeData(themeChangeProvider.darkTheme, context),
             debugShowCheckedModeBanner: false,
